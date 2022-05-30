@@ -34,7 +34,7 @@ class RssManager
       rssChannel.RssItems=loadRssItems(rssUrl)
 
       return rssChannel
-      
+
   end
 
 
@@ -50,7 +50,7 @@ class RssManager
           rssitem.Title=rssItemNodes[index].at_xpath("title").content
 
           if rssItemNodes[index].at_xpath("description")
-            rssitem.Description=rssItemNodes[index].at_xpath("description").content
+            rssitem.Description=rssItemNodes[index].at_xpath("description").content 
           end
 
           if rssItemNodes[index].at_xpath("link")

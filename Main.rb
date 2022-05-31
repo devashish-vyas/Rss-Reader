@@ -6,15 +6,11 @@ DEFAULT_FEEDS=['https://kotaku.com/rss','http://goodbeerhunting.com/sightlines?f
 
 def listselection(input)
 
-    
     if input.to_i.to_s == input and input.to_i > 0 and input.to_i <= DEFAULT_FEEDS.length 
          
         rssUrl=DEFAULT_FEEDS[input.to_i - 1]
         feed(rssUrl)
         Run2()
-    
-
-
     elsif input=='list'
         showdefaultfeeds
     
@@ -47,6 +43,7 @@ def listinput
     listselection(input)
 end
 
+#function to display RSS feed
 def feed(rssUrl)
 
     rssManager=RssManager.new
@@ -67,6 +64,7 @@ def feed(rssUrl)
     end
 end
 
+#Function to run the program until and exit statement is encountered
 def Run2
     puts "Enter another URL or write the index of the url from default feeds"
     puts "Type exit to end the process"
@@ -76,13 +74,10 @@ def Run2
 
     input=gets.chomp
     listselection(input)
-
 end
 
-
+#Main function
 def Run
-    #rssUrl = "http://feeds.feedburner.com/rockpapershotgun?format=xml"
-
     
     puts "Welcome to RSS "
     puts "You can enter the URL or you can select URL from some default feed (type list to see feeds)"
@@ -90,8 +85,6 @@ def Run
     input = gets.chomp
     listselection(input)
 
-
-    
 end
 
 

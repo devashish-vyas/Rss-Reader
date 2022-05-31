@@ -1,22 +1,22 @@
 require 'open-uri'
 require 'nokogiri'
-
 require_relative 'rssData.rb'
 
-#My desire
 
 
 class RssManager
 
   def loadRssChannel(rssUrl)
-
+    
+      # Read Rss from url(using nokogiri library)
       xmlDoc= Nokogiri::XML(URI.open(rssUrl))
+      #get Rss Channel node
       rssChannelNode = xmlDoc.root.at_xpath("channel")
 
       rssChannel = RssChannel.new
 
 
-      
+      # Created new Rss channel
       rssChannel.Title =  xmlDoc.root.at_xpath("channel/title").content
 
       if rssChannelNode.at_xpath("description")
@@ -40,13 +40,18 @@ class RssManager
 
   def loadRssItems(rssUrl)
 
+      # read Rss from URL
       xmlDoc= Nokogiri::XML(URI.open(rssUrl))
+
+      #Get Xml nodes
       rssItemNodes = xmlDoc.root.xpath("channel/item")
 
       rssItems=[]
       
       for index in 0..rssItemNodes.length-1 do
+          #Created new RssItem
           rssitem=RssItem.new
+
           rssitem.Title=rssItemNodes[index].at_xpath("title").content
 
           if rssItemNodes[index].at_xpath("description")
@@ -64,7 +69,8 @@ class RssManager
           if rssItemNodes[index].at_xpath("pubDate")
              rssitem.PubDate=rssItemNodes[index].at_xpath("pubDate").content
           end
-
+          
+          #adding new rssItem to an array
           rssItems.push(rssitem);
       end
       
@@ -72,9 +78,6 @@ class RssManager
     return rssItems
     
   end
-
-
-
 
 end
 

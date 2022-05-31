@@ -37,9 +37,9 @@ class RssChannel
       @RssItems      
     end
   
-  end
+end
   
-  class RssItem
+class RssItem
     
     def Title=(t)
       @Title = t
@@ -76,4 +76,4 @@ class RssChannel
       @PubDate      
     end
   
-  end
+end
